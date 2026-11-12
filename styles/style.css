@@ -1,5 +1,289 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  color: var(--text-color, #f1b2ce);
+  background-color: var(--background-color, #000028);
+  background-image: var(--background-image);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font: var(--base-font-size) / var(--line-height) var(--font-family, monospace);
+}
+
+.header {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  block-size: 100vh;
+  min-block-size: 668px;
+  padding: var(--page-padding);
+}
+
+.decorated-zone::before {
+  content: "";
+  position: absolute;
+  inset-block-start: var(--page-padding);
+  inset-inline-end: var(--page-padding);
+  inline-size: 25px;
+  block-size: 25px;
+  border-block-start: 1px solid var(--menu-color);
+  border-inline-end: 1px solid var(--menu-color);
+}
+
+.decorated-zone::after {
+  content: "";
+  position: absolute;
+  inset-block-end: var(--page-padding);
+  inset-inline-start: var(--page-padding);
+  inline-size: 25px;
+  block-size: 25px;
+  border-block-end: 1px solid var(--menu-color);
+  border-inline-start: 1px solid var(--menu-color);
+}
+
+.header__theme-menu {
+  justify-self: end;
+  align-self: center;
+}
+
+.header__theme-menu-list {
+  display: grid;
+  gap: 10px;
+}
+
+.header__theme-menu-button {
+  border: 1px solid transparent;
+  padding: 1px 13px;
+  color: var(--menu-color);
+  background: none;
+  font-size: inherit;
+  line-height: 1;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+.header__theme-menu-button:hover {
+  border-color: var(--menu-border-color);
+}
+
+.header__theme-menu-button:focus {
+  outline: none;
+}
+
+.header__theme-menu-button:focus-visible {
+  border-block-end-color: var(--menu-color);
+}
+
+.header__theme-menu-button_active {
+  border-color: var(--menu-color);
+  pointer-events: none;
+}
+
+.header__rec {
+  position: absolute;
+  inset-block-start: var(--page-padding);
+  inset-inline-end: calc(var(--page-padding) + 28px);
+  display: var(--rec-display);
+  color: var(--accent-color);
+  text-transform: uppercase;
+}
+
+.header__rec::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 8px;
+  inset-inline-end: -19px;
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 4px 2px var(--accent-color);
+}
+
+.header__title,
+.footer__title {
+  color: var(--title-color);
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  font-weight: 700;
+  line-height: 0.825;
+}
+
+.header__title {
+  text-shadow: 4px 4px 0 var(--accent-color);
+}
+
+.header__description {
+  align-self: center;
+  font-weight: 700;
+}
+
+.title-decor {
+  color: var(--decor-text-color);
+  background-color: var(--accent-color);
+}
+
+.main {
+  display: grid;
+  gap: 50px;
+  padding: 40px var(--page-padding);
+}
+
+.section {
+  display: grid;
+  gap: 20px;
+}
+
+.section__title {
+  color: var(--heading-color);
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.section__content {
+  display: grid;
+  gap: 20px;
+}
+
+.section__subtitle,
+.article__title,
+.gallery__title {
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.article__title_regular {
+  font-weight: 400;
+}
+
+.article__text {
+  margin-block-start: 10px;
+}
+
+.article__link {
+  text-decoration: none;
+  text-shadow: 2px 2px var(--accent-color);
+}
+
+.article__link:hover {
+  border-block-end: 1px solid currentColor;
+}
+
+.article__link:focus {
+  outline: none;
+}
+
+.article__link:focus-visible {
+  outline: 1px solid currentColor;
+}
+
+.gallery {
+  display: grid;
+  gap: 10px;
+}
+
+.gallery__content {
+  display: grid;
+  gap: 10px;
+}
+
+.gallery__image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.footer {
+  position: relative;
+  display: grid;
+  place-items: center;
+  block-size: 100vh;
+  min-block-size: 668px;
+  padding: var(--page-padding);
+}
+
+.footer__title {
+  text-shadow: 2px 2px 0 var(--accent-color);
+}
+
+@media (min-width: 768px) {
+  .header,
+  .footer {
+    min-block-size: 768px;
+  }
+
+  .header__title,
+  .footer__title {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
+
+  .header__title {
+    margin-inline-start: -20px;
+  }
+
+  .header__description {
+    justify-self: end;
+    inline-size: 50%;
+  }
+
+  .main {
+    gap: 80px;
+    padding-block: 60px;
+  }
+
+  .section_reasons,
+  .section_advice {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .section_distractions .section__title {
+    max-inline-size: calc((100% - 40px) / 3);
+  }
+
+  .gallery,
+  .gallery__content {
+    gap: 20px;
+  }
+
+  .gallery__content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery__image_sunset {
+    grid-column: span 2;
+  }
+
+  .gallery__image_ice-cream {
+    grid-column: 3;
+    grid-row: span 2;
+  }
+
+  .gallery__image_tape {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+
+  .gallery__image_street {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__theme-menu {
+    align-self: start;
+    justify-self: center;
+  }
+
+  .header__theme-menu-list {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  .section_reasons,
+  .section_advice {
+    grid-template-columns: 1fr 2.06fr;
+  }
+
+  .section_distractions .section__content {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
